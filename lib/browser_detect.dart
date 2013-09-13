@@ -10,10 +10,12 @@ Browser _browser;
 Browser get browser {
   if (_browser == null) {
     _browser = _browsers.firstWhere((browser) => browser._matcher(),
-        orElse: () => null);
+        orElse: () => new _UnknownBrowser());
   }
   return _browser;
 }
+
+Iterable<Browser> _browsers = [_chrome, _safari, _opera, _ie, _firefox];
 
 Browser _chrome = new Browser("Chrome",
     () => window.navigator.vendor.contains("Google"),
@@ -34,7 +36,3 @@ Browser _ie = new Browser("IE",
 Browser _firefox = new Browser("Firefox",
     () => window.navigator.userAgent.contains("Firefox"),
     () => new RegExp(r"rv:/(.*)\)").firstMatch(window.navigator.userAgent).group(1));
-
-Iterable<Browser> _browsers = [
-  _chrome, _safari, _opera, _ie, _firefox, new _UnknownBrowser()
-];

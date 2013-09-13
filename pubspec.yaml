@@ -6,5 +6,4 @@ homepage: http://www.github.com/danschultz/browser_detect.dart
 dependencies:
 
 dev_dependencies:
-  browser: any
   unittest: any
