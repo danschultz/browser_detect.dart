@@ -22,7 +22,7 @@ Browser _chrome = new Browser("Chrome",
     () => new RegExp(r"Chrome/(.*)\s").firstMatch(window.navigator.appVersion).group(1));
 
 Browser _safari = new Browser("Safari",
-    () => window.navigator.vendor.contains("Safari"),
+    () => window.navigator.vendor.contains("Apple"),
     () => new RegExp(r"Version/(.*)\s").firstMatch(window.navigator.appVersion).group(1));
 
 Browser _opera = new Browser("Opera",
