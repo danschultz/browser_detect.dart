@@ -35,7 +35,7 @@ Browser _ie = new Browser("IE",
 
 Browser _firefox = new Browser("Firefox",
     () => window.navigator.userAgent.contains("Firefox"),
-    () => new RegExp(r"rv:/(.*)\)").firstMatch(window.navigator.userAgent).group(1));
+    () => new RegExp(r"rv:/?(.*)\)").firstMatch(window.navigator.userAgent).group(1));
 
 bool _matchVendor(String name) {
   var vendor = window.navigator.vendor;
