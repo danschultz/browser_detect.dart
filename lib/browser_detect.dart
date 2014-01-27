@@ -4,7 +4,7 @@ import 'dart:html';
 import 'dart:math';
 
 part "src/browser.dart";
-part "src/browesr_version.dart";
+part "src/browser_version.dart";
 
 Browser _browser;
 Browser get browser {
