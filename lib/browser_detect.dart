@@ -6,13 +6,10 @@ import 'dart:math';
 part "src/browser.dart";
 part "src/browser_version.dart";
 
-Browser _browser;
-Browser get browser {
-  if (_browser == null) {
-    _browser = _browsers.firstWhere((browser) => browser._matcher(),
-        orElse: () => new _UnknownBrowser());
-  }
-  return _browser;
+final Browser browser = _determineBrowser();
+
+Browser _determineBrowser() {
+  return _browsers.firstWhere((browser) => browser._matcher(), orElse: () => _unknown);
 }
 
 Iterable<Browser> _browsers = [_chrome, _safari, _opera, _ie, _firefox];
@@ -36,6 +33,8 @@ Browser _ie = new Browser("IE",
 Browser _firefox = new Browser("Firefox",
     () => window.navigator.userAgent.contains("Firefox"),
     () => new RegExp(r"rv:(.*)\)").firstMatch(window.navigator.userAgent).group(1));
+
+Browser _unknown = new _UnknownBrowser();
 
 bool _matchVendor(String name) {
   var vendor = window.navigator.vendor;
