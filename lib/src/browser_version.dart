@@ -3,6 +3,8 @@ part of browser_detect;
 class BrowserVersion implements Comparable<BrowserVersion> {
   final String value;
 
+  bool get isUnknown => value == null || value.isEmpty;
+
   Iterable<int> _elements;
   Iterable<int> get elements {
     if (_elements == null) {

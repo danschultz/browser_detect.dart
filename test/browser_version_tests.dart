@@ -3,8 +3,8 @@ library version_tests;
 import 'package:unittest/unittest.dart';
 import 'package:browser_detect/browser_detect.dart';
 
-void testVersion() {
-  group("Version", () {
+void testBrowserVersion() {
+  group("BrowserVersion", () {
     group("#compareTo", () {
       test("should be 0 if value is same", () {
         var version = new BrowserVersion("1.0");

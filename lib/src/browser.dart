@@ -8,20 +8,30 @@ class Browser {
   bool get isOpera => this == _opera;
   bool get isIe => this == _ie;
   bool get isFirefox => this == _firefox;
+  bool get isCurrent => _vendorMatchers.any((matcher) => matcher());
 
-  BrowserVersion get version => new BrowserVersion(_version());
+  BrowserVersion _version;
+  BrowserVersion get version {
+    if (_version == null) {
+      var value = _versionMatchers.map((matcher) => matcher())
+          .firstWhere((match) => match != null)
+          .group(1);
+      _version = new BrowserVersion(value);
+    }
+    return _version;
+  }
 
-  final _Matcher _matcher;
-  final _Version _version;
+  final Iterable<_VendorMatcher> _vendorMatchers;
+  final Iterable<_VersionMatcher> _versionMatchers;
 
-  const Browser(this.name, this._matcher, this._version);
+  Browser(this.name, this._vendorMatchers, this._versionMatchers);
 
   String toString() => "$name $version".trim();
 }
 
 class _UnknownBrowser extends Browser {
-  _UnknownBrowser() : super("Unknown Browser", () => true, () => "");
+  _UnknownBrowser() : super("Unknown Browser", [() => true], [() => ""]);
 }
 
-typedef bool _Matcher();
-typedef String _Version();
+typedef bool _VendorMatcher();
+typedef Match _VersionMatcher();

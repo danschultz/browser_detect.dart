@@ -9,30 +9,32 @@ part "src/browser_version.dart";
 final Browser browser = _determineBrowser();
 
 Browser _determineBrowser() {
-  return _browsers.firstWhere((browser) => browser._matcher(), orElse: () => _unknown);
+  return _browsers.firstWhere((browser) => browser.isCurrent, orElse: () => _unknown);
 }
 
 Iterable<Browser> _browsers = [_chrome, _safari, _opera, _ie, _firefox];
 
 Browser _chrome = new Browser("Chrome",
-    () => _matchVendor("Google"),
-    () => new RegExp(r"Chrome/(.*)\s").firstMatch(window.navigator.appVersion).group(1));
+    [() => _matchVendor("Google")],
+    [() => new RegExp(r"Chrome/(.*)\s").firstMatch(window.navigator.appVersion)]);
 
 Browser _safari = new Browser("Safari",
-    () => _matchVendor("Apple"),
-    () => new RegExp(r"Version/(.*)\s").firstMatch(window.navigator.appVersion).group(1));
+    [() => _matchVendor("Apple")],
+    [() => new RegExp(r"Version/(.*)\s").firstMatch(window.navigator.appVersion)]);
 
 Browser _opera = new Browser("Opera",
-    () => _matchVendor("Opera"),
-    () => new RegExp(r"OPR/(.*)\s").firstMatch(window.navigator.appVersion).group(1));
+    [() => _matchVendor("Opera")],
+    [() => new RegExp(r"OPR/(.*)\s").firstMatch(window.navigator.appVersion)]);
 
 Browser _ie = new Browser("IE",
-    () => window.navigator.appName.contains("Microsoft"),
-    () => new RegExp(r"MSIE (.*);").firstMatch(window.navigator.appVersion).group(1));
+    [() => window.navigator.appName.contains("Microsoft"),
+     () => window.navigator.appVersion.contains("Trident")],
+    [() => new RegExp(r"MSIE (.*);").firstMatch(window.navigator.appVersion),
+     () => new RegExp(r"rv:(.*)\)").firstMatch(window.navigator.appVersion)]);
 
 Browser _firefox = new Browser("Firefox",
-    () => window.navigator.userAgent.contains("Firefox"),
-    () => new RegExp(r"rv:(.*)\)").firstMatch(window.navigator.userAgent).group(1));
+    [() => window.navigator.userAgent.contains("Firefox")],
+    [() => new RegExp(r"rv:(.*)\)").firstMatch(window.navigator.userAgent)]);
 
 Browser _unknown = new _UnknownBrowser();
 
