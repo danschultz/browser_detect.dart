@@ -1,0 +1,17 @@
+language: java
+cache: apt
+before_install:
+  - sudo add-apt-repository --yes ppa:hachre/dart
+  - sudo apt-get update --yes
+install:
+  - sudo apt-get install --yes dartvm dartsdk dartium
+  # - wget http://storage.googleapis.com/dart-archive/channels/dev/release/latest/editor/darteditor-linux-x64.zip
+  # - unzip darteditor-linux-x64.zip -d .temp
+  # - sudo sh -c "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
+  # - sudo apt-get install --yes ttf-indic-fonts ttf-mscorefonts-installer ttf-dejavu-core ttf-kochi-gothic ttf-kochi-mincho ttf-thai-tlwg
+  # - .temp/dart/chromium/download_contentshell.sh
+  # - "export DISPLAY=:99.0"
+  # - "sh -e /etc/init.d/xvfb start"
+script:
+  - pub get -v
+  # - .temp/.content_shell/content_shell --dump-render-tree test/test.html
