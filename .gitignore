@@ -2,6 +2,7 @@
 pubspec.lock
 packages
 .buildlog
+build
 out
 part.js
 *.dart.js
