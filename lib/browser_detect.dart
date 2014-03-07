@@ -29,7 +29,7 @@ Browser _opera = new Browser("Opera",
 Browser _ie = new Browser("IE",
     [() => window.navigator.appName.contains("Microsoft"),
      () => window.navigator.appVersion.contains("Trident")],
-    [() => new RegExp(r"MSIE (.*);").firstMatch(window.navigator.appVersion),
+    [() => new RegExp(r"MSIE (.+?);").firstMatch(window.navigator.appVersion),
      () => new RegExp(r"rv:(.*)\)").firstMatch(window.navigator.appVersion)]);
 
 Browser _firefox = new Browser("Firefox",
