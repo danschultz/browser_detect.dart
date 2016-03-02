@@ -28,9 +28,11 @@ Browser _opera = new Browser("Opera",
 
 Browser _ie = new Browser("IE",
     [() => window.navigator.appName.contains("Microsoft"),
-     () => window.navigator.appVersion.contains("Trident")],
+     () => window.navigator.appVersion.contains("Trident"),
+     () => window.navigator.appVersion.contains("Edge")],
     [() => new RegExp(r"MSIE (.+?);").firstMatch(window.navigator.appVersion),
-     () => new RegExp(r"rv:(.*)\)").firstMatch(window.navigator.appVersion)]);
+     () => new RegExp(r"rv:(.*)\)").firstMatch(window.navigator.appVersion),
+     () => new RegExp(r"Edge/(.*)$").firstMatch(window.navigator.appVersion)]);
 
 Browser _firefox = new Browser("Firefox",
     [() => window.navigator.userAgent.contains("Firefox")],
