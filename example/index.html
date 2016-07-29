@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>browser_detect example</title>
+  </head>
+ 
+  <body>
+    <div>
+      browser: <span id="browser"></span>
+    </div>
+    <div>
+      platform: <span id="platform"></span>
+    </div>
+    
+    <script type="application/dart" src="example.dart"></script>
+    <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>
