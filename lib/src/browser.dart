@@ -8,7 +8,7 @@ class Browser {
   bool get isOpera => this == _opera;
   bool get isIe => this == _ie;
   bool get isFirefox => this == _firefox;
-  bool get isCurrent => _vendorMatchers.any((matcher) => matcher());
+  bool get _matchesCurrent => _vendorMatchers.any((matcher) => matcher());
 
   BrowserVersion _version;
   BrowserVersion get version {
