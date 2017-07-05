@@ -30,7 +30,7 @@ class Browser {
 }
 
 class _UnknownBrowser extends Browser {
-  _UnknownBrowser() : super("Unknown Browser", [() => true], [() => ""]);
+  _UnknownBrowser() : super("Unknown Browser", [() => true], [() => null]);
 }
 
 typedef bool _VendorMatcher();
