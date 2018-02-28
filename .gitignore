@@ -1,6 +1,9 @@
 # Dart files and folders
 pubspec.lock
 packages
+.packages
+.idea
+.pub
 .buildlog
 build
 out
