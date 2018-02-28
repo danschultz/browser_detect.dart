@@ -8,6 +8,9 @@ class BrowserVersion implements Comparable<BrowserVersion> {
   Iterable<int> _elements;
   Iterable<int> get elements {
     if (_elements == null) {
+      if(value == null) {
+        _elements = [];
+      }
       _elements = value.split(".").map((value) => int.parse(value, onError: (_) => 0));
     }
     return _elements;
@@ -53,7 +56,7 @@ class BrowserVersion implements Comparable<BrowserVersion> {
     return other is BrowserVersion ? compareTo(other) == 0 : false;
   }
 
-  int get hashCode => value.hashCode;
+  int get hashCode => value != null ? value.hashCode : 0;
 
   String toString() => value;
 }
